@@ -6,12 +6,15 @@ DATE=$(date '+%Y-%m-%d:%H:%M:%S')
 #https://stedolan.github.io/jq/download/
 #http://docs.aws.amazon.com/cli/latest/userguide/installing.html#install-bundle-other-os
 
-SG_NAME="jenkins-server-sg-$DATE"
+#Create key pair to use with this jenkins server
+KEY_PAIR_NAME=$(./createKeyPair.sh)
+echo "Created key pair: $KEY_PAIR_NAME"
 
-#Create a security group and use JQ to parse the SG GROUP ID returned
-SG_GROUP_ID=$(aws ec2 create-security-group --group-name jenkins-server-sg-$DATE --description "Jenkins server security group created at $DATE" | jq .GroupId | tr -d '"')
+#Create a security group for the EC2 instance
+SG_NAME=$(./createSGGroup.sh)
+echo "Created security group: $SG_NAME"
 
-aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp --port 80 --cidr 0.0.0.0/0
-aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
-
-#aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t1.micro --key-name MyKeyPair --security-groups my-sg
+#Create an AWS EC2 instance using Ubuntu 14.04 LTS image
+EC2_INSTANCE_ID=$(aws ec2 run-instances --image-id ami-d732f0b7 --count 1 --instance-type t2.small --key-name $KEY_PAIR_NAME --security-groups $SG_NAME | jq .Instances[0].InstanceId | tr -d '"')
+echo "Starting an EC2 instance for the jenkins server and installing jenkins on it: $EC2_INSTANCE_ID"
+aws ec2 describe-instances --instance-ids $EC2_INSTANCE_ID > $EC2_INSTANCE_ID.json
