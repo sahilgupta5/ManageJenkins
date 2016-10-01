@@ -11,7 +11,7 @@ wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key 
 echo "deb http://pkg.jenkins-ci.org/debian binary/" | sudo tee -a /etc/apt/sources.list.d/jenkins.list
 
 #Run the update to make sure repo list is updated with Jenkins source repos
-sudo apt-get update
+sudo apt-get -y update
 
 #Install jenkins package
 sudo apt-get -y install jenkins

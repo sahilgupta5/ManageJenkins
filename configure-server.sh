@@ -1,5 +1,7 @@
 # !/bin/bash
 
+sleep 120
+
 sudo ./updateServer.sh
 
 #Install git on the server
@@ -10,4 +12,4 @@ git clone https://github.com/sahilgupta5/ManageJenkins.git
 
 cd ManageJenkins
 
-sudo installJenkins.sh
+sudo ./installJenkins.sh

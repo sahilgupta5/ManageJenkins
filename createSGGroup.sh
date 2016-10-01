@@ -1,6 +1,7 @@
 # !/bin/bash
 
 DATE=$(date '+%Y-%m-%d:%H:%M:%S')
+DIR_NAME="jenkins-dir-$(date '+%Y-%m-%d')"
 
 #Assumes you have installed, configured the aws cli and installed jq - The JSON parser
 #https://stedolan.github.io/jq/download/
@@ -15,4 +16,4 @@ aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp 
 aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 echo $SG_NAME
-aws ec2 describe-security-groups --group-names $SG_NAME > $SG_NAME.json
+aws ec2 describe-security-groups --group-names $SG_NAME > $DIR_NAME/$SG_NAME.json
