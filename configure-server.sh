@@ -1,6 +1,6 @@
 # !/bin/bash
 
-sleep 120
+sleep 60
 
 sudo ./updateServer.sh
 
