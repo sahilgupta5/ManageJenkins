@@ -12,4 +12,4 @@ git clone https://github.com/sahilgupta5/ManageJenkins.git
 
 cd ManageJenkins
 
-sudo ./installJenkins.sh
+sudo ./installJenkinsAndApache.sh
