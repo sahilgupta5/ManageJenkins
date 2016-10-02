@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 # Only run as root
 if (( $EUID != 0 )); then

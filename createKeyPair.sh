@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 DATE=$(date '+%Y-%m-%d:%H:%M:%S')
 DIR_NAME="jenkins-dir-$(date '+%Y-%m-%d')"
