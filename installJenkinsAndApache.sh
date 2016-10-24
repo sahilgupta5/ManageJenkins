@@ -34,3 +34,7 @@ sed -i "s/HOSTNAME/$PUBLIC_HOSTNAME/g" /etc/apache2/sites-available/jenkins.conf
 
 sudo a2ensite jenkins
 sudo service apache2 reload
+
+#Install AWS Cli Tools
+sudo apt-get --yes install awscli
+sudo apt-get --yes install jq
