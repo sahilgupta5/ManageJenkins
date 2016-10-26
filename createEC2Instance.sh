@@ -23,7 +23,8 @@ aws ec2 describe-instances --instance-ids $EC2_INSTANCE_ID > $DIR_NAME/$EC2_INST
 
 IP_JENKINS_INSTANCE=$(cat $DIR_NAME/$EC2_INSTANCE_ID.json | jq .Reservations[0].Instances[0].PublicIpAddress | tr -d '"')
 
-sed -i.bak "s|@IP_JENKINS|$IP_JENKINS_INSTANCE|g" update-jenkins-ip.json
+cp update-jenkins-ip.json $DIR_NAME/update-jenkins-ip.json
+sed -i.bak "s|@IP_JENKINS|$IP_JENKINS_INSTANCE|g" $DIR_NAME/update-jenkins-ip.json
 
 echo "Changing the routing, making alias point to the new EC2 instance."
-aws route53 change-resource-record-sets --hosted-zone-id ZQ4GCH1PM0Y7X --change-batch file://update-jenkins-ip.json > $DIR_NAME/hosted-zone-change.json
+aws route53 change-resource-record-sets --hosted-zone-id ZQ4GCH1PM0Y7X --change-batch file://$DIR_NAME/update-jenkins-ip.json > $DIR_NAME/hosted-zone-change.json
