@@ -22,5 +22,7 @@ git clone https://github.com/sahilgupta5/ManageJenkins.git
 cd ManageJenkins
 echo "Installing updates" >> /var/log/configure-server.log
 sudo ./updateServer.sh
+echo "Installing Java and GIT" >> /var/log/configure-server.log
+sudo ./installJavaAntGit.sh
 echo "Installing jenkins and apache" >> /var/log/configure-server.log
 sudo ./installJenkinsAndApache.sh
