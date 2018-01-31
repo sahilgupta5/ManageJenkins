@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Add the repository
-sudo apt-add-repository ppa:webupd8team/java
+sudo apt-add-repository --yes ppa:webupd8team/java
 sudo apt-get --yes update
 
 #Silently accept the Oracle Java 8 license agreement and install it
