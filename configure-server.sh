@@ -2,6 +2,9 @@
 sleep 60
 mkdir -p /usr/local/jenkins
 cd /usr/local/jenkins
+
+apt-get update
+
 #Install git on the server
 sudo apt-get --yes install git
 
